@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"strings"
 )
 
 const url = "https://lco.dev"
@@ -48,4 +49,16 @@ func main() {
 
 	isValid := json.Valid(res)
 	fmt.Println("is proper json: ", isValid)
+
+	mockJSON := `{"name":"Alice","age":25}`
+	reader := strings.NewReader(mockJSON)
+
+	var u User
+
+	cErr := json.NewDecoder(reader).Decode(&u)
+	if cErr != nil {
+		fmt.Println("json decode error: ", cErr.Error())
+	}
+
+	fmt.Println("decoded user: ", u)
 }
