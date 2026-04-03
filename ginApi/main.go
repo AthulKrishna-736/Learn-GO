@@ -57,5 +57,12 @@ func main() {
 		c.JSON(http.StatusNoContent, nil)
 	})
 
+	router.GET("/person/:id", func(c *gin.Context) {
+		id := c.Param("id")
+		name := c.Query("name")
+
+		c.JSON(http.StatusOK, gin.H{"message": "Request with query params received successfully", "data": []string{id, name}})
+	})
+
 	_ = router.Run(":8080")
 }

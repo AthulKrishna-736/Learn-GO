@@ -15,6 +15,11 @@ type User struct {
 	Fruits []string `json:"fruits"`
 }
 
+type UserForm struct {
+	Name string `form:"name"`
+	Age  int    `form:"age"`
+}
+
 func main() {
 	// fmt.Println("sample web requests")
 
