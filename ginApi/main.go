@@ -16,6 +16,13 @@ type PersonForm struct {
 	Age  int    `form:"age"`
 }
 
+type User struct {
+	Name  string `json:"name" binding:"required"`
+	Age   uint   `json:"age" binding:"required"`
+	Role  string `json:"role" binding:"omitempty"`
+	Title string `json:"title" binding:"omitempty"`
+}
+
 func main() {
 	router := gin.Default()
 
@@ -62,6 +69,16 @@ func main() {
 		name := c.Query("name")
 
 		c.JSON(http.StatusOK, gin.H{"message": "Request with query params received successfully", "data": []string{id, name}})
+	})
+
+	router.POST("/user", func(c *gin.Context) {
+		var user User
+		if err := c.ShouldBindJSON(&user); err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"message": "invalid request body", "error": err})
+			return
+		}
+
+		c.JSON(http.StatusCreated, User{user.Name, user.Age, "admin", "sample user profile title"})
 	})
 
 	_ = router.Run(":8080")
