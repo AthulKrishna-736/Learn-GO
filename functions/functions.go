@@ -27,6 +27,15 @@ func variadicFunction(nums ...int) int {
 	return sum
 }
 
+func closureCounter() func() int {
+	count := 0
+
+	return func() int {
+		count++
+		return count
+	}
+}
+
 func main() {
 	myMessage()
 	hello("athul", 10)
@@ -49,5 +58,15 @@ func main() {
 
 	res3 := anonymous(1, 2, 3)
 	fmt.Printf("\nAnonymous: %d", res3)
+
+	c := closureCounter()
+	d := closureCounter()
+	fmt.Printf("\n counter 1: %d", c())
+	fmt.Printf("\n counter 1: %d", c())
+	fmt.Printf("\n counter 1: %d", c())
+
+	fmt.Printf("\n counter 2: %d", d())
+	fmt.Printf("\n counter 2: %d", d())
+	fmt.Printf("\n counter 2: %d", d())
 
 }
