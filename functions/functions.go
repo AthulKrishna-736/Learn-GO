@@ -43,4 +43,11 @@ func main() {
 	res1 := variadicFunction(nums...)
 	fmt.Printf("\nvariadic 2: %d", res1)
 
+	anonymous := func(a, b, c int) int {
+		return a - b - c
+	}
+
+	res3 := anonymous(1, 2, 3)
+	fmt.Printf("\nAnonymous: %d", res3)
+
 }
