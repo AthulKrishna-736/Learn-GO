@@ -14,4 +14,9 @@ func main() {
 	for index, val := range fruits {
 		fmt.Println("val and index", index, val)
 	}
+
+	val := "hello world!"
+	for index, val := range val {
+		fmt.Printf("\n %d : %d ", index, val)
+	}
 }
