@@ -36,6 +36,14 @@ func closureCounter() func() int {
 	}
 }
 
+func recursive(n int) int {
+	if n == 0 {
+		return 0
+	}
+
+	return n + recursive(n-1)
+}
+
 func main() {
 	myMessage()
 	hello("athul", 10)
@@ -69,4 +77,6 @@ func main() {
 	fmt.Printf("\n counter 2: %d", d())
 	fmt.Printf("\n counter 2: %d", d())
 
+	e := recursive(5)
+	fmt.Printf("\n recursive: %d", e)
 }
