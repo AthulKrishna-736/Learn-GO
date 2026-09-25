@@ -26,6 +26,11 @@ type User struct {
 	marks       *float32
 }
 
+type EmbedStruct struct {
+	Person
+	Salary int
+}
+
 func printPerson(pers Person) {
 	fmt.Println("func person: ", pers.name, pers.age, pers.mark, pers.test)
 
@@ -52,6 +57,7 @@ func main() {
 
 	user1.name = "check"
 	user1.age = 19
+	user1.marks = &per2.mark
 
 	if user1.title != nil && *user1.title != "" { // nil pointer dereference because no value so default type set to nil to solve use nil check before type check
 		fmt.Println("title is empty string")
@@ -63,5 +69,9 @@ func main() {
 	fmt.Println("print struct user: ", user1)
 
 	printPerson(per1)
+
+	a := EmbedStruct{Person: Person{name: "athul", age: 25}, Salary: 2000}
+
+	fmt.Println("embedded struct: ", a)
 
 }
